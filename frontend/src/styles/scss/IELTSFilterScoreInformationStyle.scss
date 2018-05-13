@@ -1,0 +1,20 @@
+@import "baseStyles/ColorStyle.scss";
+.wrapper-ielts-filter{
+  width: 40%;
+  margin-left: 200px;
+  background-color: $inner-content-white-smoke;
+  border-style: solid;
+  border-color: #16e3f2;
+  align-content: center;
+}
+
+.ielts-filter-content{
+  padding-left: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+
+.date-picker{
+  display: inline-block;
+}

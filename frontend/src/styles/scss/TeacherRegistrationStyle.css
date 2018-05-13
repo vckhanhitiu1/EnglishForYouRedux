@@ -1,0 +1,46 @@
+@media only screen and (max-width: 2000px) {
+  .teacher-registration-wrapper {
+    text-align: center;
+    background-color: #f5f5f5;
+    /*margin-bottom: 100px;*/
+    /*margin-right: 200px;*/
+    margin-left: 200px;
+    border-style: solid;
+    border-color: #16e3f2;
+    border-radius: 20px;
+    width: 70%; }
+  .teacher-registration-content {
+    padding-bottom: 20px;
+    margin-right: 100px;
+    margin-left: 100px; } }
+
+@media only screen and (max-width: 600px) {
+  .teacher-registration-wrapper {
+    text-align: center;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-color: #16e3f2; }
+  .teacher-registration-content {
+    padding-bottom: 20px; } }
+
+@media only screen and (max-width: 400px) {
+  .teacher-registration-wrapper {
+    margin-left: 0px;
+    border-style: none;
+    background-color: transparent; }
+  .teacher-registration-content {
+    padding-bottom: 20px; }
+  .content-inside {
+    background-color: white; }
+  .logicButton {
+    padding-left: 50px; } }
+
+.content-inside {
+  background-color: white;
+  display: block; }
+
+.date-picker {
+  display: inline-block; }
+
+.logicButton {
+  padding-bottom: 10px; }

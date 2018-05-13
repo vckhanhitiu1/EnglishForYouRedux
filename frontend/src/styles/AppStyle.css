@@ -1,0 +1,13 @@
+.wrapper{
+    width: 100% !important;
+    height:100% !important;
+    background-color: aqua !important;
+}
+
+@media only screen and (max-height: 200px){
+
+    body{
+        background-color: cornflowerblue;
+    }
+}
+
