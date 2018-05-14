@@ -9,6 +9,7 @@ let initialState = {
     opening_state: false,
     signing_in: false,
     popover_open_state: false,
+    open: false,
 }
 
 export const AppReducers = (state=initialState,action)=>{
@@ -20,12 +21,20 @@ export const AppReducers = (state=initialState,action)=>{
 
         case type.OPENING_STATE_WITH_VALUE:
             return Object.assign({},state,{
-                signing_in: action.boolean,
-            });
+                open: action.value
 
-        case type.POPOVER_OPEN_STATE:
+            });
+            console.log("**************************"+action.value())
+
+
+        case type.POPOVER_OPEN_STATE_OPEN:
             return Object.assign({},state,{
                 popover_open_state:true,
+            });
+
+        case type.POPOVER_OPEN_STATE_CLOSE:
+            return Object.assign({},state,{
+                popover_open_state:false,
             });
 
         default:

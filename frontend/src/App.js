@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ChoosingRoleComponent from "./components/ChoosingRoleComponent";
-import {Drawer, IconButton, FontIcon, FlatButton, Popover, Menu, MenuItem} from 'material-ui'
-import FooterComponent from "./components/FooterComponent";
-import IELTSFilterScoreInformationComponent from "./components/IELTSFilterScoreInformationComponent";
-import BasicStepsForTeacherRegistrationComponent from "./components/StepsTeacherRegistrationComponent/BasicStepsForTeacherRegistrationComponent";
-import RoutesComponent from "./components/RoutesComponent";
+import {Drawer, IconButton, FontIcon, FlatButton, Popover, Menu, MenuItem} from 'material-ui';
 import  "./styles/AppStyle.css"
-import SignUpFormComponent from "./components/SignUpFormComponent";
+
+import RoutesComponent from "./components/RoutesComponent";
+import * as type from "./constants/AppConstants";
+import {on_opening_state_action,on_get_state} from "./actions/AppActions";
 
 
 class App extends Component {
 
     constructor(props){
         super(props)
-        this.state ={
-            opening_state: false,
-            signing_in:false,
-            popover_open_state: false
-        }
+        // this.state ={
+        //     opening_state: false,
+        //     signing_in:false,
+        //     popover_open_state: false
+        // }
     }
 
     render_nav_menus(){
@@ -31,29 +31,28 @@ class App extends Component {
     /*
         Handle toggle of left navbar
      */
-    handle_toggle_leftnav = () => this.setState({
-        opening_state: !this.state.opening_state
-    });
 
-    handle_leftnav_change = (open) => this.setState({
-        opening_state: open
-    });
+    handle_toggle_leftnav = () =>{
+        this.props.dispatch(on_opening_state_action());
 
-    handleClickPopOver= (event) =>
+    }
 
-        this.setState({
-            popover_open_state:true,
-            anchorEl: event.currentTarget
-        });
+    handle_leftnav_change = () => {
+        console.log("lon lon"+this.props.open);
+        this.props.dispatch(on_get_state());
+    };
 
-    handleClosePopOver = () =>
-        this.setState({
-            popover_open_state: false,
-        });
-
+    // handleClickPopOver=()=>{
+    //     this.props.dispatch(opening_state);
+    // };
+    //
+    // handleClosePopOver=()=>{
+    //     this.props.dispatch(opening_state);
+    // };
 
     render() {
         return (
+            console.log("cac"+this.props.open),
             <div className="rootStyle">
             <MuiThemeProvider >
                 <AppBar title="Title"
@@ -65,8 +64,7 @@ class App extends Component {
                                <div>
                                    <FlatButton label="Log In" onClick={this.handleClickPopOver}/>
                                        <Popover
-                                           open={this.state.popover_open_state}
-                                           anchorEl={this.state.anchorEl}
+                                           open={this.props.popover_open_state}
                                            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                                            targetOrigin={{horizontal: 'left', vertical: 'top'}}
                                            onRequestClose={this.handleClosePopOver}
@@ -84,7 +82,7 @@ class App extends Component {
                     </div>
 
                     <Drawer docked={false} width={300}
-                            open={this.state.opening_state}
+                            open={this.props.open}
                             onRequestChange={this.handle_leftnav_change.bind(this)}>
                         <AppBar
                             title="Menu"
@@ -120,5 +118,14 @@ class App extends Component {
 }
 
 
+const mapStateToProps = (state) =>{
+    return{
+        opening_state: state.AppReducers.opening_state,
+        signing_in: state.AppReducers.signing_in,
+        popover_open_state: state.AppReducers.popover_open_state,
+        open: state.AppReducers.open,
+    }
+}
 
-export default App;
+
+export default connect(mapStateToProps)(App);
