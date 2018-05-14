@@ -4,9 +4,16 @@ import * as type from '../constants/AppConstants';
 // export const SIGNING_IN = 'SIGNING_IN';
 // export const POPOVER_OPEN_STATE = 'POPOVER_OPEN_STATE';
 
-export const opening_state =()=>{
+export const handle_toggle_leftnav =()=>{
     return{
         type: type.OPENING_STATE,
+    }
+}
+
+export const handle_leftnav_change=(open)=>{
+    return{
+        type: type.OPENING_STATE_WITH_VALUE,
+        boolean: open,
     }
 }
 

@@ -11,16 +11,16 @@ let initialState = {
     popover_open_state: false,
 }
 
-export const AppReducer = (state=initialState,action)=>{
+export const AppReducers = (state=initialState,action)=>{
     switch (action.type){
         case type.OPENING_STATE:
             return Object.assign({},state,{
-                opening_state: true,
+                opening_state: !state.opening_state,
             });
 
-        case type.SIGNING_IN:
+        case type.OPENING_STATE_WITH_VALUE:
             return Object.assign({},state,{
-                signing_in:true,
+                signing_in: action.boolean,
             });
 
         case type.POPOVER_OPEN_STATE:
