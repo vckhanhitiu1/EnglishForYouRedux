@@ -9,7 +9,8 @@ let initialState = {
     opening_state: false,
     signing_in: false,
     popover_open_state: false,
-    open: false,
+    open_props: null,
+    event_props: null,
 }
 
 export const AppReducers = (state=initialState,action)=>{
@@ -21,11 +22,9 @@ export const AppReducers = (state=initialState,action)=>{
 
         case type.OPENING_STATE_WITH_VALUE:
             return Object.assign({},state,{
-                open: action.value
-
+                open_props: action.value,
+                opening_state: !state.opening_state,
             });
-            console.log("**************************"+action.value())
-
 
         case type.POPOVER_OPEN_STATE_OPEN:
             return Object.assign({},state,{

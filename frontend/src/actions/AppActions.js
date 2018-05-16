@@ -10,7 +10,7 @@ export const opening_state_action =()=>{
     }
 }
 
-export const get_state=(open)=>{
+export const get_state_action=(open)=>{
     return{
         type: type.OPENING_STATE_WITH_VALUE,
         value: open,
@@ -23,29 +23,39 @@ export const signing_in =()=>{
     }
 }
 
-export const popover_open_state =()=>{
+export const popover_open_state_open_action =()=>{
     return{
         type: type.POPOVER_OPEN_STATE_OPEN,
     }
 }
 
-export const handleClosePopOver=()=>{
+export const popover_open_state_close_action=()=>{
    return{
        type: type.POPOVER_OPEN_STATE_CLOSE
    }
 }
 
-
-export const on_opening_state_action = () =>{
+export const on_opening_state_action=()=>{
     return function (dispatch){
         dispatch(opening_state_action());
     }
 };
 
-export const on_get_state = () =>{
+export const on_get_state_action=(open)=>{
     return function (dispatch){
-        dispatch(get_state());
+        dispatch(get_state_action(open));
     }
 };
 
+export const on_popover_open_state_action=()=>{
+    return function (dispatch) {
+        dispatch(popover_open_state_open_action());
+    }
+}
+
+export const on_popover_open_state_close_action=()=>{
+    return function (dispatch) {
+        dispatch(popover_open_state_close_action());
+    }
+}
 

@@ -1,99 +1,76 @@
+// # Import core
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+
+// # Import UI
 import AppBar from 'material-ui/AppBar';
-import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ChoosingRoleComponent from "./components/ChoosingRoleComponent";
-import {Drawer, IconButton, FontIcon, FlatButton, Popover, Menu, MenuItem} from 'material-ui';
-import  "./styles/AppStyle.css"
+import {Drawer, FontIcon} from 'material-ui';
 
+// # Import resource
+import {on_opening_state_action, on_get_state_action, on_popover_open_state_action, on_popover_open_state_close_action} from "./actions/AppActions";
 import RoutesComponent from "./components/RoutesComponent";
-import * as type from "./constants/AppConstants";
-import {on_opening_state_action,on_get_state} from "./actions/AppActions";
-
+import ChoosingRoleComponent from "./components/ChoosingRoleComponent";
+import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
+import {CustomRouter} from './components/minicomponents/AppMiniComponents';
 
 class App extends Component {
 
     constructor(props){
         super(props)
-        // this.state ={
-        //     opening_state: false,
-        //     signing_in:false,
-        //     popover_open_state: false
-        // }
     }
-
-    render_nav_menus(){
-        //TODO: Implement the navbar when user already logged in
-    }
-
-    /*
-        Handle toggle of left navbar
-     */
 
     handle_toggle_leftnav = () =>{
+        console.log("handle_toggle_leftnav");
         this.props.dispatch(on_opening_state_action());
-
-    }
-
-    handle_leftnav_change = () => {
-        console.log("lon lon"+this.props.open);
-        this.props.dispatch(on_get_state());
     };
 
-    // handleClickPopOver=()=>{
-    //     this.props.dispatch(opening_state);
-    // };
-    //
-    // handleClosePopOver=()=>{
-    //     this.props.dispatch(opening_state);
-    // };
+    handle_leftnav_change = (open) => {
+        console.log("handle_leftnav_change");
+        this.props.dispatch(on_get_state_action(open));
+        this.props.dispatch(on_popover_open_state_close_action());
+    };
+
+    handleClickPopOver= () =>{
+        console.log("handleClickPopOver");
+        this.props.dispatch(on_popover_open_state_action());
+    };
+
+    handleClosePopOver = () =>{
+        console.log("handleClosePopOver");
+        this.props.dispatch(on_popover_open_state_close_action());
+    };
+
+    static renderFontIcon(){
+        return(
+            <FontIcon className="material-icons">
+                <i class="material-icons">&#xE317;</i>
+            </FontIcon>
+        );
+    }
 
     render() {
         return (
-            console.log("cac"+this.props.open),
             <div className="rootStyle">
-            <MuiThemeProvider >
+            <MuiThemeProvider>
                 <AppBar title="Title"
                         position="static"
                         zDepth={0}
                         onLeftIconButtonClick={this.handle_toggle_leftnav.bind(this)}
-                        iconElementRight={
-                            <Router>
-                               <div>
-                                   <FlatButton label="Log In" onClick={this.handleClickPopOver}/>
-                                       <Popover
-                                           open={this.props.popover_open_state}
-                                           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                                           targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                                           onRequestClose={this.handleClosePopOver}
-                                       >
-                                       <Menu>
-                                           <MenuItem><Link to="/login">Log In</Link></MenuItem>
-                                           <MenuItem ><Link to="/registration">Registration Here!</Link></MenuItem>
-                                       </Menu>
-                                       </Popover>
-                               </div>
-                            </Router>
-                        }>
-
-                    <div className="top-bar-right">
-                    </div>
+                        iconElementRight={<CustomRouter click={this.handleClickPopOver}
+                                                        open={this.props.popover_open_state}
+                                                        onRequestClose={this.handleClosePopOver}/>}>
+                    {/*<div className="top-bar-right"></div>*/}
 
                     <Drawer docked={false} width={300}
-                            open={this.props.open}
-                            onRequestChange={this.handle_leftnav_change.bind(this)}>
-                        <AppBar
-                            title="Menu"
-                            zDepth={0}
-                            iconElementLeft={
-                                <FontIcon className="material-icons">
-                                <i class="material-icons">&#xE317;</i>
-                                </FontIcon>
-                            }
-                            onLeftIconButtonClick={this.handle_toggle_leftnav.bind(this)}
-                        />
+                            open={this.props.opening_state}
+                            onRequestChange={this.handle_leftnav_change}>
+                        <AppBar title="Menu"
+                                zDepth={0}
+                                iconElementLeft={this.renderFontIcon()}
+                                onLeftIconButtonClick={this.handle_toggle_leftnav.bind(this)}/>
+
                     </Drawer>
                 </AppBar>
 
@@ -101,21 +78,22 @@ class App extends Component {
                     <a class="google-btn" href="/auth/google">Google+</a>
                 </main>
 
-            <Router>
-                <div >
-                    <Link to="/login">Log In</Link>
-                    <Link to="/registration">Registration Here!</Link>
-                    <TeacherRegistrationInformationComponent/>
-                    <ChoosingRoleComponent/>
-                    <hr />
-                    <RoutesComponent/>
-                </div>
-            </Router>
+                <Router>
+                    <div >
+                        <Link to="/login">Log In</Link>
+                        <Link to="/registration">Registration Here!</Link>
+                        <TeacherRegistrationInformationComponent/>
+                        <ChoosingRoleComponent/>
+                        <hr/>
+                        <RoutesComponent/>
+                    </div>
+                </Router>
+
             </MuiThemeProvider>
             </div>
         );
     }
-}
+};
 
 
 const mapStateToProps = (state) =>{
@@ -123,9 +101,9 @@ const mapStateToProps = (state) =>{
         opening_state: state.AppReducers.opening_state,
         signing_in: state.AppReducers.signing_in,
         popover_open_state: state.AppReducers.popover_open_state,
-        open: state.AppReducers.open,
+        open_props: state.AppReducers.open_props,
     }
-}
+};
 
 
 export default connect(mapStateToProps)(App);
