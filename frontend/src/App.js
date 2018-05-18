@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 
 // # Import UI
 import AppBar from 'material-ui/AppBar';
-import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
 import CandidateRegistrationInformationComponent from "./components/CandidateRegistrationInformationPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Drawer, FontIcon} from 'material-ui';
