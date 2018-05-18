@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
+import CandidateRegistrationInformationComponent from "./components/CandidateRegistrationInformationPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ChoosingRoleComponent from "./components/ChoosingRoleComponent";
 import {Drawer, IconButton, FontIcon, FlatButton, Popover, Menu, MenuItem} from 'material-ui'
@@ -108,6 +109,7 @@ class App extends Component {
                     <Link to="/login">Log In</Link>
                     <Link to="/registration">Registration Here!</Link>
                     <TeacherRegistrationInformationComponent/>
+                    <CandidateRegistrationInformationComponent/>
                     <ChoosingRoleComponent/>
                     <hr />
                     <RoutesComponent/>
