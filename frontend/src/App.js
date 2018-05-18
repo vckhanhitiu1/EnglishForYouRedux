@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 
 // # Import UI
 import AppBar from 'material-ui/AppBar';
+import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
+import CandidateRegistrationInformationComponent from "./components/CandidateRegistrationInformationPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Drawer, FontIcon} from 'material-ui';
 
@@ -78,17 +80,17 @@ class App extends Component {
                     <a class="google-btn" href="/auth/google">Google+</a>
                 </main>
 
-                <Router>
-                    <div >
-                        <Link to="/login">Log In</Link>
-                        <Link to="/registration">Registration Here!</Link>
-                        <TeacherRegistrationInformationComponent/>
-                        <ChoosingRoleComponent/>
-                        <hr/>
-                        <RoutesComponent/>
-                    </div>
-                </Router>
-
+            <Router>
+                <div >
+                    <Link to="/login">Log In</Link>
+                    <Link to="/registration">Registration Here!</Link>
+                    <TeacherRegistrationInformationComponent/>
+                    <CandidateRegistrationInformationComponent/>
+                    <ChoosingRoleComponent/>
+                    <hr />
+                    <RoutesComponent/>
+                </div>
+            </Router>            
             </MuiThemeProvider>
             </div>
         );

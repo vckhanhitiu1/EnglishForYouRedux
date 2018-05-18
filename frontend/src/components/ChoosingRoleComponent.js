@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import "../styles/scss/ChoosingRoleStyle.css";
 import FooterComponent from "./FooterComponent";
+import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 class ChoosingRoleComponent extends Component{
     render(){
@@ -18,6 +19,12 @@ class ChoosingRoleComponent extends Component{
                         primary={true}
                     />
                     <RaisedButton
+                        label="Candidate Registration"
+                        labelPosition="before"
+                        primary={true}
+                        onclick={<Link to ="/candidates"></Link>}
+                    />
+                    <RaisedButton
 
                         target="_blank"
                         label="Student Registration"
@@ -27,7 +34,7 @@ class ChoosingRoleComponent extends Component{
                 </MuiThemeProvider>
 
                 </div>
-                <FooterComponent/>
+
             </div>
         )
     }
