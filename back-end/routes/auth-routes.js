@@ -14,14 +14,16 @@ router.get('/logout', (req, res) => {
 
 
 // auth with google+
-router.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile']
-}));
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
 
 
 //  auth with facebook
 router.get('/auth/facebook',
     passport.authenticate('facebook')
 );
+
+router.get('/auth/google/redirect', passport.authenticate('google',{ scope: ['profile'] }), (req, res) => {
+    res.send('you reached the redirect URI');
+});
 
 module.exports = router

@@ -1,7 +1,7 @@
 module.exports = {
     google:{
-        clientID:'353838157547-v67u4easvga0ifet7clc47t9i60lun1a.apps.googleusercontent.com',
-        clientSecret:'tTpmGiJVEl4-3kARCoRv0FPQ'
+        clientID:'353838157547-khas6ii0tntmaj6473jhurhp9lrde18m.apps.googleusercontent.com',
+        clientSecret:'fOnMnHINO1GcrCH4_hJToonZ'
     },
 
     facebook:{

@@ -1,5 +1,5 @@
 var passport = require('passport')
-, GoogleStrategy = require('passport-google-oauth').OAuthStrategy,
+, GoogleStrategy = require('passport-google-oauth20').Strategy,
 FacebookStrategy = require('passport-facebook').Strategy;
 const keys = require('./keys');
 const User = require('../models/user');
@@ -28,24 +28,23 @@ passport.use(
 
 );
 
-// passport.use(
-//     new GoogleStrategy({
-//         clientID : keys.google.clientID,
-//         clientSecret : keys.google.clientSecret,
-//         callbackURL: ''
-//     },
-//        function (accessToken, refreshToken, profile, done){
-//         console.log('passport callback function fired:');
-//         console.log(profile);
-//         // new User({
-//         //     googleId:profile.id,
-//         //     username: profile.displayName,
-//         //     email: profile.emails[0].value
-//         //
-//         // }).save().then((newUser) =>{
-//         //     console.log('new user created: ', newUser);
-//         // })
-//
-//         }
-//     )
-// )
+passport.use(
+    new GoogleStrategy({
+            callbackURL: 'http://localhost:8081/auth/google/redirect',
+            clientID : keys.google.clientID,
+            clientSecret : keys.google.clientSecret,
+    },
+         (accessToken, refreshToken, profile, done)=>{
+        console.log('passport callback function fired:');
+        console.log(profile);
+        new User({
+            googleId:profile.id,
+            username: profile.displayName,
+
+        }).save().then((newUser) =>{
+            console.log('new user created: ', newUser);
+        })
+
+        }
+    )
+)

@@ -1,1 +1,0 @@
-export const  COME_BACK_ICON = "&#xE317;";
