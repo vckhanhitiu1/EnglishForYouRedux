@@ -1,0 +1,71 @@
+.home-page-container{
+    max-width: 90%;
+    margin: auto;
+    padding-top: 40px;
+    display: block;
+}
+
+.home-page-container .slide-wrapper{
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+.home-page-container .img-slider{
+    /* width: 300px;
+    height: 250px; */
+    margin: auto;
+    height: 500px;
+    overflow: scroll;
+}
+
+.home-page-container .information-wrapper{
+    margin-left: 0px;
+    margin-top: 50px;
+}
+.home-page-container .news-wrapper{
+    height: 500px;
+    overflow: scroll;
+    margin-bottom: 50px;
+    font-size: 12px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+}
+.home-page-container .teacher-wrapper{
+    font-size: 12px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+    height:240px;
+    margin-bottom: 20px;
+}
+
+.home-page-container .board-title{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.home-page-container .board-content{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.home-page-container .teacher-rate{
+    text-align: center;
+}
+.home-page-container .student-wrapper{
+    background-color: pink;
+    height:300px;
+    
+}
+.home-page-container .news-section{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.home-page-container .img-content{
+    height: 100px;
+    margin: auto;
+}
+.home-page-container .news-title{
+    font-weight: bold;
+}
+
