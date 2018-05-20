@@ -27,7 +27,6 @@ class LogInComponent extends Component{
 
                   <FacebookLogin
                       appId="122717688592283"
-
                   />
                   <br/><br/>
 

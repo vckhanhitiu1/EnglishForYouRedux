@@ -1,0 +1,10 @@
+/**
+ *
+ * @type {actionTodo}
+ */
+
+export const OPENING_STATE = 'OPENING_STATE';
+export const OPENING_STATE_WITH_VALUE = 'OPENING_STATE_WITH_VALUE';
+export const SIGNING_IN = 'SIGNING_IN';
+export const POPOVER_OPEN_STATE_OPEN = 'POPOVER_OPEN_STATE_OPEN';
+export const POPOVER_OPEN_STATE_CLOSE = 'POPOVER_OPEN_STATE_CLOSE';
