@@ -40,3 +40,4 @@ router.delete('/api/deleteCandidate/:id', function (req, res) {
         res.json(user);
     });
 });
+module.exports = router

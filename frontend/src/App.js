@@ -69,18 +69,16 @@ class App extends Component {
                             onRequestChange={this.handle_leftnav_change}>
                         <AppBar title="Menu"
                                 zDepth={0}
-                                iconElementLeft={this.renderFontIcon()}
+                                iconElementLeft={this.renderFontIcon}
                                 onLeftIconButtonClick={this.handle_toggle_leftnav.bind(this)}/>
 
                     </Drawer>
                 </AppBar>
 
-                <main>
-                    <a class="google-btn" href="/auth/google">Google+</a>
-                </main>
 
             <Router>
                 <div >
+                    <Link to="/auth/google">Google+</Link>
                     <Link to="/login">Log In</Link>
                     <Link to="/registration">Registration Here!</Link>
                     <TeacherRegistrationInformationComponent/>

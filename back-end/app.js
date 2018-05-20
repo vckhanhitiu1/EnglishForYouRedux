@@ -26,6 +26,10 @@ app.use('/',authRoutes );
 app.use('/', candidateRoutes);
 app.use('/', teacherRoutes);
 
+
+/*
+  Allowing backend express can connect with frontend React
+ */
 app.use(function(req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -45,53 +49,6 @@ app.use(function(req, res, next) {
 });
 
 
-/*
-app.get('/api/getUserList', function(req,res){
-    User.getUsers(function(err, User){
-        if (err){
-            throw err;
-        }
-        res.json(User);
-    });
-});
-*/
-
-/*
-app.post('/api/addUser', function(req,res){
-    var user = req.body;
-    User.addUser(user, function(err, user){
-        if (err){
-            throw err;
-        }
-        res.json(user);
-    });
-});
-*/
-
-/*
-app.put('/api/updateUser/:id', function(req,res){
-    var id = req.params._id
-    var user = req.body;
-    User.updateUser(id, user, {}, function(err, user){
-        if (err){
-            throw err;
-        }
-        res.json(user);
-    });
-});
-*/
-
-/*
-app.delete('/api/deleteUser/:id', function(req,res){
-    var id = req.params._id;
-    User.deleteUser(id, function(err, user){
-        if (err){
-            throw err;
-        }
-        res.json(user);
-    });
-});
-*/
 
 app.listen(8081);
 console.log('Starting...');

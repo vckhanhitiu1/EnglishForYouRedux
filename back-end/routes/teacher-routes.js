@@ -41,4 +41,4 @@ router.delete('/api/deleteTeacher/:id', function (req, res) {
         res.json(user);
     });
 });
-
+module.exports = router
