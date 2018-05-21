@@ -23,7 +23,12 @@ class CandidateRegistrationInformationComponent extends Component {
         this.state = {
             firstName: null,
             lastName: null,
-            email: null
+            email: null,
+            Phone: null,
+            birthday: null,
+            username: null,
+            password: null,
+            address: null
         }
 
 
@@ -35,9 +40,9 @@ class CandidateRegistrationInformationComponent extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { firstName,lastName,email} = this.state;
+        const { firstName,lastName,email, Phone, birthday, username, password, address} = this.state;
 
-        axios.post('http://localhost:8081/api/addUser', { firstName, lastName, email})
+        axios.post('http://localhost:8081/api/addUser', { firstName, lastName, email, Phone, birthday, username, password, address})
             .then((result) => {
                 this.props.history.push("/")
             });
@@ -55,6 +60,12 @@ class CandidateRegistrationInformationComponent extends Component {
         const firstName = this.state.firstName;
         const lastName = this.state.lastName;
         const email = this.state.email;
+        const Phone = this.state.Phone;
+        const birthday = this.state.birthday;
+        const username = this.state.username;
+        const password = this.state.password;
+        const address = this.state.address;
+
 
         return (
             <div className="teacher-registration-wrapper">
@@ -64,30 +75,48 @@ class CandidateRegistrationInformationComponent extends Component {
             <div className="content-inside">
             <div className="first-name" id="firstName">
             <i class="fa fa-address-card" aria-hidden="true"/>
-
             <TextField
-        hintText="Candidate First Name" name="firstName"  value={firstName} onChange={this.onChange}
-        /><br />
+        hintText="Candidate First Name" name="firstName"  value={firstName} onChange={this.onChange}/><br />
         </div>
 
         <div className="last-name" id="lastName">
             <i class="fa fa-address-card" aria-hidden="true"/>
             <TextField
-        hintText="Candidate Last Name" name="lastName" value={lastName} onChange={this.onChange}
-        /><br />
+        hintText="Candidate Last Name" name="lastName" value={lastName} onChange={this.onChange}/><br />
         </div>
 
         <div className="email" id="email">
             <i class="fa fa-envelope-o" aria-hidden="true"/>
             <TextField
-        name="Email"
-        hintText="Candidate Email Address"
-        value={email} onChange={this.onChange}
-        />
-        <br/>
+        name="Email" hintText="Candidate Email Address" value={email} onChange={this.onChange}/><br/>
         </div>
 
-        {/*<div className="gender" id="gender">
+        <div>
+            <i className="fa fa-envelope-o" aria-hidden="true"/>
+            <TextField name="Phone" hintText="Candidate Phone" value={Phone} onChange={this.onChange}/><br/>
+        </div>
+
+        <div className="birthday" id="birthday">
+            <i className="fa fa-envelope-o" aria-hidden="true"/>
+            <TextField name="birthday" hintText="Candidate birthday" value={birthday} onChange={this.onChange}/><br/>
+        </div>
+
+        <div className="username" id="username">
+            <i className="fa fa-envelope-o" aria-hidden="true"/>
+            <TextField name="username" hintText="Candidate Name" value={username} onChange={this.onChange}/><br/>
+        </div>
+
+        <div className="password" id="password">
+            <i className="fa fa-envelope-o" aria-hidden="true"/>
+            <TextField type = "password" name="password" hintText="Candidate Password" value={password} onChange={this.onChange}/><br/>
+        </div>
+
+        <div className="address" id="address">
+            <i className="fa fa-envelope-o" aria-hidden="true"/>
+            <TextField name="address" hintText="Candidate Address" value={address} onChange={this.onChange}/><br/>
+        </div>
+
+                {/*<div className="gender" id="gender">
                             <i class="fa fa-transgender" aria-hidden="true"/>
                             <SelectField
                                 floatingLabelText="I Am"
