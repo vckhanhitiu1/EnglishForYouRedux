@@ -23,7 +23,12 @@ class CandidateRegistrationInformationComponent extends Component {
         this.state = {
             firstName: null,
             lastName: null,
-            email: null
+            email: null,
+            Phone: null,
+            birthday: null,
+            username: null,
+            password: null,
+            address: null
         }
 
 
@@ -35,9 +40,9 @@ class CandidateRegistrationInformationComponent extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { firstName,lastName,email} = this.state;
+        const { firstName,lastName,email, Phone, birthday, username, password, address} = this.state;
 
-        axios.post('http://localhost:8081/api/addUser', { firstName, lastName, email})
+        axios.post('http://localhost:8081/api/addCandidate', { firstName, lastName, email, Phone, birthday, username, password, address})
             .then((result) => {
                 this.props.history.push("/")
             });
@@ -55,67 +60,86 @@ class CandidateRegistrationInformationComponent extends Component {
         const firstName = this.state.firstName;
         const lastName = this.state.lastName;
         const email = this.state.email;
+        const Phone = this.state.Phone;
+        const birthday = this.state.birthday;
+        const username = this.state.username;
+        const password = this.state.password;
+        const address = this.state.address;
+
 
         return (
             <div className="teacher-registration-wrapper">
-            <h1>Candidate Registration Information</h1>
+                <h1>Candidate Registration Information</h1>
 
-        <div className= "teacher-registration-content">
-            <div className="content-inside">
-            <div className="first-name" id="firstName">
-            <i class="fa fa-address-card" aria-hidden="true"/>
+                <div className= "teacher-registration-content">
+                    <div className="content-inside">
+                        <div className="first-name" id="firstName">
+                            <i class="fa fa-address-card" aria-hidden="true"/>
+                            <TextField
+                                hintText="Candidate First Name" name="firstName"  value={firstName} onChange={this.onChange}/><br />
+                        </div>
 
-            <TextField
-        hintText="Candidate First Name" name="firstName"  value={firstName} onChange={this.onChange}
-        /><br />
-        </div>
+                        <div className="last-name" id="lastName">
+                            <i class="fa fa-address-card" aria-hidden="true"/>
+                            <TextField
+                                hintText="Candidate Last Name" name="lastName" value={lastName} onChange={this.onChange}/><br />
+                        </div>
 
-        <div className="last-name" id="lastName">
-            <i class="fa fa-address-card" aria-hidden="true"/>
-            <TextField
-        hintText="Candidate Last Name" name="lastName" value={lastName} onChange={this.onChange}
-        /><br />
-        </div>
+                        <div className="email" id="email">
+                            <i class="fa fa-envelope-o" aria-hidden="true"/>
+                            <TextField
+                                name="Email" hintText="Candidate Email Address" value={email} onChange={this.onChange}/><br/>
+                        </div>
 
-        <div className="email" id="email">
-            <i class="fa fa-envelope-o" aria-hidden="true"/>
-            <TextField
-        name="Email"
-        hintText="Candidate Email Address"
-        value={email} onChange={this.onChange}
-        />
-        <br/>
-        </div>
+                        <div>
+                            <i className="fa fa-envelope-o" aria-hidden="true"/>
+                            <TextField name="Phone" hintText="Candidate Phone" value={Phone} onChange={this.onChange}/><br/>
+                        </div>
 
-        {/*<div className="gender" id="gender">
+                        <div className="birthday" id="birthday">
+                            <i className="fa fa-envelope-o" aria-hidden="true"/>
+                            <TextField name="birthday" hintText="Candidate birthday" value={birthday} onChange={this.onChange}/><br/>
+                        </div>
+
+                        <div className="username" id="username">
+                            <i className="fa fa-envelope-o" aria-hidden="true"/>
+                            <TextField name="username" hintText="Candidate Name" value={username} onChange={this.onChange}/><br/>
+                        </div>
+
+                        <div className="password" id="password">
+                            <i className="fa fa-envelope-o" aria-hidden="true"/>
+                            <TextField type = "password" name="password" hintText="Candidate Password" value={password} onChange={this.onChange}/><br/>
+                        </div>
+
+                        <div className="address" id="address">
+                            <i className="fa fa-envelope-o" aria-hidden="true"/>
+                            <TextField name="address" hintText="Candidate Address" value={address} onChange={this.onChange}/><br/>
+                        </div>
+
+                        {/*<div className="gender" id="gender">
                             <i class="fa fa-transgender" aria-hidden="true"/>
                             <SelectField
                                 floatingLabelText="I Am"
                             >
                                 <MenuItem value={1} primaryText="Male" />
                                 <MenuItem value={2} primaryText="Female" />
-
                             </SelectField>
                             <br/>
                         </div>
-
                         <div className="phone" id="phone">
                             <i class="fa fa-mobile" aria-hidden="true"/>
                             <TextField
                                 hintText="Phone Number"
                             /><br />
                         </div>
-
                         <div className="birthday" id="birthday">
                             <i class="fa fa-birthday-cake" aria-hidden="true"/>
                             <DatePicker className="date-picker"
                                 hintText="Birthday"
                             />
                         </div>
-
                         <div className="personal-description" id="personalDescription">
                             <i class="fa fa-sticky-note" aria-hidden="true"/>
-
                             <TextField
                                 hintText="Personal Description"
                             /><br />
@@ -126,11 +150,8 @@ class CandidateRegistrationInformationComponent extends Component {
                                 hintText="Personal ID"
                             /><br />
                         </div>
-
-
                         <div className="address" id="address">
                             <i class="fa fa-address-book-o" aria-hidden="true">
-
                                 <AutoComplete
                                     hintText="Type anything"
                                     dataSource={this.state.dataSource}
@@ -138,40 +159,35 @@ class CandidateRegistrationInformationComponent extends Component {
                                 /></i>
                             <br />
                         </div>
-
-
                         <div className="profile-image" id="profileImage">
                             <i class="fa fa-file-image-o" aria-hidden="true"/>
-
                             <TextField
                                 hintText="Image Profile"
                             /><br />
                         </div>*/}
-    </div>
-        </div>
-        <div className="logicButton">
-            <RaisedButton
+                    </div>
+                </div>
+                <div className="logicButton">
+                    <RaisedButton
 
-        target="_blank"
-        label="Submit"
-        secondary={false}
-        onClick={this.onSubmit}
+                        target="_blank"
+                        label="Submit"
+                        secondary={false}
+                        onClick={this.onSubmit}
 
 
-        />
-        <RaisedButton
+                    />
+                    <RaisedButton
 
-        target="_blank"
-        label="Cancel"
-        secondary={true}
+                        target="_blank"
+                        label="Cancel"
+                        secondary={true}
 
-        />
-        </div>
-                <Router>
-                    <RoutesComponent/>
-                </Router>
-        </div>
-    )
+                    />
+                </div>
+
+            </div>
+        )
     }
 
 

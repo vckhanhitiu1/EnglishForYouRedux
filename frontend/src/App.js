@@ -2,12 +2,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
+
 
 // # Import UI
 import AppBar from 'material-ui/AppBar';
 import CandidateRegistrationInformationComponent from "./components/CandidateRegistrationInformationPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Drawer, FontIcon} from 'material-ui';
+import {Drawer, FontIcon, RaisedButton} from 'material-ui';
 
 // # Import resource
 import {on_opening_state_action, on_get_state_action, on_popover_open_state_action, on_popover_open_state_close_action} from "./actions/AppActions";
@@ -19,7 +21,13 @@ import {CustomRouter} from './components/minicomponents/AppMiniComponents';
 class App extends Component {
 
     constructor(props){
-        super(props)
+        super(props);
+
+        this.state = {
+            googleId: null,
+            username: null,
+        }
+
     }
 
     handle_toggle_leftnav = () =>{
@@ -42,6 +50,19 @@ class App extends Component {
         console.log("handleClosePopOver");
         this.props.dispatch(on_popover_open_state_close_action());
     };
+
+    handleGoogleClick = (e) =>{
+        e.preventDefault();
+        const { googleId,username} = this.state;
+
+        axios.get('http://localhost:8081/auth/google').then((response) =>{
+            console.log("***********"+response.status)
+            console.log("***********"+response.data.googleId)
+
+        })
+
+    }
+
 
     static renderFontIcon(){
         return(
@@ -73,16 +94,23 @@ class App extends Component {
                                 onLeftIconButtonClick={this.handle_toggle_leftnav.bind(this)}/>
 
                     </Drawer>
+                    <RaisedButton
+
+                        target="_blank"
+                        label="Google+"
+                        secondary={true}
+                        onClick={this.handleGoogleClick}
+                    />
+
                 </AppBar>
 
 
             <Router>
                 <div >
-                    <Link to="/auth/google">Google+</Link>
                     <Link to="/login">Log In</Link>
                     <Link to="/registration">Registration Here!</Link>
-                    <TeacherRegistrationInformationComponent/>
-                    <CandidateRegistrationInformationComponent/>
+                    <Link to ="/teachers">Teacher</Link>
+                    <Link to ="/candidates">Candidate</Link>
                     <ChoosingRoleComponent/>
                     <hr />
                     <RoutesComponent/>
