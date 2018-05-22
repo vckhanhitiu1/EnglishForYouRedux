@@ -10,21 +10,32 @@ import RoutesComponent from "./RoutesComponent";
 class ChoosingRoleComponent extends Component{
     render(){
         return(
-
+<Router>
             <div className="wrapper">
                 <div class="card">
+                <MuiThemeProvider>
+                    <h1>Choose Your Role</h1>
+                    <RaisedButton
+                        labelPosition="before"
+                        primary={true}>
+                        <Link to ="/teachers">Teacher Registration</Link>
+                    </RaisedButton>
+                    <RaisedButton
+                        labelPosition="before"
+                        primary={true}>
+                        <Link to ="/candidates">Candidate Registration</Link>
+                    </RaisedButton>
+
+                </MuiThemeProvider>
 
                 </div>
-                <Router>
                     <div>
-                    <Link to ="/teachers">Teacher</Link>
-                    <Link to ="/candidates">Candidate</Link>
-                        <RoutesComponent/>
-                    <Router/>
+                    <RoutesComponent/>
                     </div>
-                </Router>
 
             </div>
+</Router>
+
         )
     }
 }

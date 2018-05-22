@@ -68,7 +68,7 @@ class TeacherRegistrationInformationComponent extends Component {
 
         return (
             <div className="teacher-registration-wrapper">
-                <h1>Registration Information</h1>
+                <h1>Teacher Registration Information</h1>
 
                 <div className= "teacher-registration-content">
                     <div className="content-inside">

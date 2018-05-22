@@ -99,7 +99,7 @@ class App extends Component {
                         target="_blank"
                         label="Google+"
                         secondary={true}
-                        onClick={this.handleGoogleClick}
+                        onTouchStart={this.handleGoogleClick}
                     />
 
                 </AppBar>
@@ -109,8 +109,7 @@ class App extends Component {
                 <div >
                     <Link to="/login">Log In</Link>
                     <Link to="/registration">Registration Here!</Link>
-                    <Link to ="/teachers">Teacher</Link>
-                    <Link to ="/candidates">Candidate</Link>
+
                     <ChoosingRoleComponent/>
                     <hr />
                     <RoutesComponent/>
