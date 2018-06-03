@@ -8,6 +8,7 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes')
 const candidateRoutes = require('./routes/candidate-routes')
 const teacherRoutes = require('./routes/teacher-routes')
+const PORT = process.env.PORT || 8081
 
 app.use(passport.initialize());
 
@@ -51,6 +52,6 @@ app.use('/', teacherRoutes);
 
 
 
-app.listen(process.env.PORT || 8081);
+app.listen(PORT, () => console.log(`*********Listening on ${ PORT }`));
 //app.listen(3000);
 console.log('Starting...');
