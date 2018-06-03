@@ -9,6 +9,7 @@ const authRoutes = require('./routes/auth-routes')
 const candidateRoutes = require('./routes/candidate-routes')
 const teacherRoutes = require('./routes/teacher-routes')
 const PORT = process.env.PORT || 8081
+const MONGO_URL = 'mongodb://khanhvo:Khanhyoulyitiu1@ds245250.mlab.com:45250/englishforyou';
 
 app.use(passport.initialize());
 
@@ -18,8 +19,10 @@ app.use(bodyParser.json());
 
 
 //Connect to Mongoose
-mongoose.connect('mongodb://localhost/englishforyou');
+mongoose.connect(MONGO_URL);
 mongoose.Promise = global.Promise;
+
+
 app.use(bodyParser.json());
 
 /*
