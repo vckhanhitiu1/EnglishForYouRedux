@@ -22,6 +22,7 @@ class RoutesComponent extends Component{
                 <Switch>
                     <Route exact path='/candidates' component={CandidateRegistrationInformationComponent}/>
                     <Route exact path='/teachers' component={TeacherRegistrationInformationComponent} />
+                    <Route exact path='/scores' component={IELTSFilterScoreInformationComponent}/>
                     <Route exact path='/demos' component={BasicStepsForTeacherRegistrationComponent} />
                     <Route exact path='/demosGrade' component={IELTSFilterScoreInformationComponent} />
                     <Route exact path='/login' component={LogInComponent} />
