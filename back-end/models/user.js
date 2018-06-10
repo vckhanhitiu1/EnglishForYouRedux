@@ -55,6 +55,15 @@ module.exports.addUser = function(user, callback){
     User.create(user, callback);
 }
 
+//Applied role
+module.exports.updateRole = function(id, user, options, callback) {
+    var query = {_id: id};
+    var update = {
+        role: user.role = teacher
+    }
+    User,findOneAndUpdate(query, update, options, callback);
+}
+
 // Update users
 module.exports.updateUser = function(id , user, options, callback){
     var query = {_id : id};

@@ -8,10 +8,12 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes')
 const candidateRoutes = require('./routes/candidate-routes')
 const teacherRoutes = require('./routes/teacher-routes')
+const  scoreRoutes = require('./routes/score-routes')
 
 app.use(passport.initialize());
 
 User = require('./models/user');
+Score = require('./models/score');
 
 app.use(bodyParser.json());
 
@@ -25,6 +27,7 @@ app.use(bodyParser.json());
 app.use('/',authRoutes );
 app.use('/', candidateRoutes);
 app.use('/', teacherRoutes);
+app.use('/', scoreRoutes);
 
 app.use(function(req, res, next) {
     // Website you wish to allow to connect
