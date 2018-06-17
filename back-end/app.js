@@ -25,9 +25,9 @@ app.use(bodyParser.json());
 
 
 app.use('/',authRoutes );
-app.use('/', candidateRoutes);
-app.use('/', teacherRoutes);
-app.use('/', scoreRoutes);
+app.use('/candidate', candidateRoutes);
+app.use('/teacher', teacherRoutes);
+app.use('/score', scoreRoutes);
 
 app.use(function(req, res, next) {
     // Website you wish to allow to connect

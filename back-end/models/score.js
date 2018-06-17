@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var score = require('../models/user');
 
 // Score Schema
 var scoreSchema = mongoose.Schema(
@@ -22,6 +21,8 @@ var scoreSchema = mongoose.Schema(
     date: {
         type: Date
     }
+
+
 });
 
 var Score = module.exports = mongoose.model('Score',scoreSchema);
