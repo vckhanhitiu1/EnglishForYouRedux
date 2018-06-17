@@ -45,6 +45,18 @@ class App extends Component {
         this.props.dispatch(on_popover_open_state_close_action());
     };
 
+    handleCondition(){
+        //{this.props.roleUser ? "teacher" : <TeacherRegistrationInformationComponent/> ? "student" : <CandidateRegistrationInformationComponent/> ? <ChoosingRoleComponent/>}
+
+        if (this.props.roleUser === "teacher"){
+            return(
+                <TeacherRegistrationInformationComponent/>
+            )
+        }else if (this.props.roleUser === "student"){
+            return(<CandidateRegistrationInformationComponent/>)
+        }else return(<ChoosingRoleComponent/>)
+    }
+
     renderFontIcon(){
         return(
             <FontIcon className="material-icons">
@@ -54,6 +66,7 @@ class App extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className="rootStyle">
             <MuiThemeProvider>
@@ -88,7 +101,7 @@ class App extends Component {
 
                     <TeacherRegistrationInformationComponent/>
                     <CandidateRegistrationInformationComponent/>
-                    <ChoosingRoleComponent/>
+                    {this.handleCondition()}
                     <hr />
                     <RoutesComponent/>
                 </div>
@@ -106,6 +119,7 @@ const mapStateToProps = (state) =>{
         signing_in: state.AppReducers.signing_in,
         popover_open_state: state.AppReducers.popover_open_state,
         open_props: state.AppReducers.open_props,
+        roleUser: state.RoleReducers.role
     }
 };
 
