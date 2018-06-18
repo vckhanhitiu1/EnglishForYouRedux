@@ -45,7 +45,7 @@ class App extends Component {
         this.props.dispatch(on_popover_open_state_close_action());
     };
 
-    handleCondition(){
+    handleConditionForChoosingRole(){
         //{this.props.roleUser ? "teacher" : <TeacherRegistrationInformationComponent/> ? "student" : <CandidateRegistrationInformationComponent/> ? <ChoosingRoleComponent/>}
 
         if (this.props.roleUser === "teacher"){
@@ -98,10 +98,7 @@ class App extends Component {
                 <div >
                     <Link to="/login">Log In</Link>
                     <Link to="/registration">Registration Here!</Link>
-
-                    <TeacherRegistrationInformationComponent/>
-                    <CandidateRegistrationInformationComponent/>
-                    {this.handleCondition()}
+                    {this.handleConditionForChoosingRole()}
                     <hr />
                     <RoutesComponent/>
                 </div>
