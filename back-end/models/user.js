@@ -46,7 +46,7 @@ var userSchema = mongoose.Schema({
     },
 
     ieltsScore:{
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.Object,
         ref: 'Score'
     }
 
