@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
 
 router.get('/api/getScoreList', function(req,res){
     Score.getScore(function(err, Score){
@@ -41,4 +40,6 @@ router.delete('/api/deleteScore/:id', function (req, res) {
         res.json(score);
     });
 });
+
+module.exports = router;
 

@@ -1,6 +1,8 @@
 
 var mongoose = require('mongoose');
-// Score = require('./score');
+var Score = require('./score');
+var Schema = mongoose.Schema;
+
 
 // User Schema
 var userSchema = mongoose.Schema({
@@ -41,11 +43,12 @@ var userSchema = mongoose.Schema({
 
     facebookId: {
         type: String
-    }
+    },
 
-    // ieltsScore:{
-    //     type: Score
-    // }
+    ieltsScore:{
+        type: Schema.Types.ObjectId,
+        ref: 'Score'
+    }
 
 });
 
