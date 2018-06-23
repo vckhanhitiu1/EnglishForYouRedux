@@ -1,4 +1,8 @@
+
 var mongoose = require('mongoose');
+var Score = require('./score');
+var Schema = mongoose.Schema;
+
 
 // User Schema
 var userSchema = mongoose.Schema({
@@ -37,8 +41,13 @@ var userSchema = mongoose.Schema({
         type: String
     },
 
-    facebookId:{
+    facebookId: {
         type: String
+    },
+
+    ieltsScore:{
+        type: Schema.Types.Object,
+        ref: 'Score'
     }
 
 });
@@ -53,6 +62,15 @@ module.exports.getUsers = function(callback, limit){
 // Add users
 module.exports.addUser = function(user, callback){
     User.create(user, callback);
+}
+
+//Applied role
+module.exports.updateRole = function(id, user, options, callback) {
+    var query = {_id: id};
+    var update = {
+        role: user.role = teacher
+    }
+    User,findOneAndUpdate(query, update, options, callback);
 }
 
 // Update users

@@ -9,12 +9,14 @@ import CandidateRegistrationInformationComponent from "./components/CandidateReg
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Drawer, FontIcon} from 'material-ui';
 
+
 // # Import resource
 import {on_opening_state_action, on_get_state_action, on_popover_open_state_action, on_popover_open_state_close_action} from "./actions/AppActions";
 import RoutesComponent from "./components/RoutesComponent";
 import ChoosingRoleComponent from "./components/ChoosingRoleComponent";
 import TeacherRegistrationInformationComponent from "./components/TeacherRegistrationInformationPage";
 import {CustomRouter} from './components/minicomponents/AppMiniComponents';
+import IELTSFilterScoreInformationComponent from "./components/IELTSFilterScoreInformationComponent";
 
 class App extends Component {
 
@@ -43,7 +45,19 @@ class App extends Component {
         this.props.dispatch(on_popover_open_state_close_action());
     };
 
-    static renderFontIcon(){
+    handleConditionForChoosingRole(){
+        //{this.props.roleUser ? "teacher" : <TeacherRegistrationInformationComponent/> ? "student" : <CandidateRegistrationInformationComponent/> ? <ChoosingRoleComponent/>}
+
+        if (this.props.roleUser === "teacher"){
+            return(
+                <TeacherRegistrationInformationComponent/>
+            )
+        }else if (this.props.roleUser === "student"){
+            return(<CandidateRegistrationInformationComponent/>)
+        }else return(<ChoosingRoleComponent/>)
+    }
+
+    renderFontIcon(){
         return(
             <FontIcon className="material-icons">
                 <i class="material-icons">&#xE317;</i>
@@ -52,6 +66,7 @@ class App extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className="rootStyle">
             <MuiThemeProvider>
@@ -78,21 +93,19 @@ class App extends Component {
                 <main>
                     <a class="google-btn" href="/auth/google">Google+</a>
                 </main>
-
+                <IELTSFilterScoreInformationComponent/>
             <Router>
                 <div >
                     <Link to="/login">Log In</Link>
                     <Link to="/registration">Registration Here!</Link>
-                    <TeacherRegistrationInformationComponent/>
-                    <CandidateRegistrationInformationComponent/>
-                    <ChoosingRoleComponent/>
+                    {this.handleConditionForChoosingRole()}
                     <hr />
                     <RoutesComponent/>
                 </div>
             </Router>            
             </MuiThemeProvider>
             </div>
-        );
+        )
     }
 };
 
@@ -103,6 +116,7 @@ const mapStateToProps = (state) =>{
         signing_in: state.AppReducers.signing_in,
         popover_open_state: state.AppReducers.popover_open_state,
         open_props: state.AppReducers.open_props,
+        roleUser: state.RoleReducers.role
     }
 };
 

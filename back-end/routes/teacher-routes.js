@@ -42,3 +42,4 @@ router.delete('/api/deleteTeacher/:id', function (req, res) {
     });
 });
 
+module.exports = router;

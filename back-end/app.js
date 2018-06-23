@@ -8,6 +8,8 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes')
 const candidateRoutes = require('./routes/candidate-routes')
 const teacherRoutes = require('./routes/teacher-routes')
+const PORT = process.env.PORT || 8081
+const MONGO_URL = 'mongodb://khanhvo:Khanhyoulyitiu1@ds245250.mlab.com:45250/englishforyou';
 
 app.use(passport.initialize());
 
@@ -17,24 +19,27 @@ app.use(bodyParser.json());
 
 
 //Connect to Mongoose
-mongoose.connect('mongodb://localhost/englishforyou');
+mongoose.connect(MONGO_URL);
 mongoose.Promise = global.Promise;
+
+
 app.use(bodyParser.json());
 
-
-app.use('/',authRoutes );
-app.use('/', candidateRoutes);
-app.use('/', teacherRoutes);
-
+/*
+  Allowing backend express can connect with frontend React
+ */
 app.use(function(req, res, next) {
+
+
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.header('Access-Control-Allow-Methods', '*');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.header("Access-Control-Allow-Headers", "*");
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -44,54 +49,12 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/',authRoutes );
+app.use('/', candidateRoutes);
+app.use('/', teacherRoutes);
 
-/*
-app.get('/api/getUserList', function(req,res){
-    User.getUsers(function(err, User){
-        if (err){
-            throw err;
-        }
-        res.json(User);
-    });
-});
-*/
 
-/*
-app.post('/api/addUser', function(req,res){
-    var user = req.body;
-    User.addUser(user, function(err, user){
-        if (err){
-            throw err;
-        }
-        res.json(user);
-    });
-});
-*/
 
-/*
-app.put('/api/updateUser/:id', function(req,res){
-    var id = req.params._id
-    var user = req.body;
-    User.updateUser(id, user, {}, function(err, user){
-        if (err){
-            throw err;
-        }
-        res.json(user);
-    });
-});
-*/
-
-/*
-app.delete('/api/deleteUser/:id', function(req,res){
-    var id = req.params._id;
-    User.deleteUser(id, function(err, user){
-        if (err){
-            throw err;
-        }
-        res.json(user);
-    });
-});
-*/
-
-app.listen(8081);
+app.listen(PORT, () => console.log(`*********Listening on ${ PORT }`));
+//app.listen(3000);
 console.log('Starting...');
