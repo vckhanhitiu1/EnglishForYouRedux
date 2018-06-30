@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 // # Import UI
 import AppBar from 'material-ui/AppBar';
 import CandidateRegistrationInformationComponent from "./components/CandidateRegistrationInformationPage";
+import FileUploadComponent from "./components/FileUploadComponent";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Drawer, FontIcon} from 'material-ui';
 
@@ -94,6 +95,7 @@ class App extends Component {
                     <a class="google-btn" href="/auth/google">Google+</a>
                 </main>
                 <IELTSFilterScoreInformationComponent/>
+                <FileUploadComponent/>
             <Router>
                 <div >
                     <Link to="/login">Log In</Link>
